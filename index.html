@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyrillica - Transform your Romanized sentences into Cyrillic...</title>
+</head>
+
+<style>
+    #capsLetters {
+        display: none;
+    }
+
+    #lowLetters {
+        display: block;
+    }
+</style>
+
+<body>
+    
+    <img style="padding: 10px; margin-left: -5px; margin-top: 5px; width: 210px;" src="images/Cyrillica.png" alt="">
+    <hr>
+
+    <textarea style="font-size: 25px; font-family: 'Times New Roman', Times, serif; padding: 5px;" name="" id="mainTB" cols="60" rows="10" spellcheck="false" placeholder="Insert any Romanized sentence and watch it transform into Cyrillic..."></textarea>
+
+    <br>
+
+    <hr>
+
+    <input onclick="copyText()" style="width: 64px; height: 36px; font-size: 18px; text-align: center; font-family: 'Times New Roman', Times, serif; cursor: pointer; display: inline;" type="button" value="Copy">
+    <input onclick="cutText()" style="width: 64px; height: 36px; font-size: 18px; text-align: center; font-family: 'Times New Roman', Times, serif; cursor: pointer; display: inline;" type="button" value="Cut">
+    <input onclick="pasteText()" style="width: 64px; height: 36px; font-size: 18px; text-align: center; font-family: 'Times New Roman', Times, serif; cursor: pointer; display: inline;" type="button" value="Paste">
+    <input onclick="addText(' ')" style="width: 64px; height: 36px; font-size: 18px; text-align: center; font-family: 'Times New Roman', Times, serif; cursor: pointer; display: inline;" type="button" value="Space">
+
+    <input type="checkbox" name="" id="capsCB"> <label style="cursor: pointer;" for="capsCB">Caps Lock</label>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const capsCB = document.getElementById('capsCB');
+            const capsLetters = document.getElementById('capsLetters');
+            const lowLetters = document.getElementById('lowLetters');
+    
+            capsCB.addEventListener('change', function() {
+                if (capsCB.checked) {
+                    capsLetters.style.display = 'block';
+                    lowLetters.style.display = 'none';
+                } else {
+                    capsLetters.style.display = 'none';
+                    lowLetters.style.display = 'block';
+                }
+            });
+        });
+    </script>
+
+    <hr>
+
+    <div id="capsLetters">
+        <input onclick="addText('А')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; cursor: pointer;" type="button" value="А" title="I make an Ahh sound, as in avocado.">
+        <input onclick="addText('Б')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Б" title="I make a Beh sound, as in bubble.">
+        <input onclick="addText('В')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="В" title="I make a Veh sound, as in vehicle.">
+        <input onclick="addText('Г')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Г" title="I make a Geh sound, as in game.">
+        <input onclick="addText('Д')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Д" title="I make a Deh sound, as in donut.">
+        <input onclick="addText('Е')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Е" title="I make a Yeh sound, as in yes.">
+        <input onclick="addText('Ё')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Ё" title="I make a Yoh sound, as in yogurt.">
+        <input onclick="addText('Ж')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Ж" title="I make a Zhe sound, as in pleasure.">
+        <input onclick="addText('З')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="З" title="I make a Zeh sound, as in zebra.">
+        <input onclick="addText('И')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="И" title="I make an Eee sound, as in beet.">
+        <input onclick="addText('Й')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Й" title="I make a Yah or Jah sound, as in yawn.">
+        <input onclick="addText('К')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="К" title="I make a Keh sound, as in kitten.">
+        <input onclick="addText('Л')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Л" title="I make a Lah sound, as in ladder.">
+        <input onclick="addText('М')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="М" title="I make a Meh sound, as in melon.">
+        <input onclick="addText('Н')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Н" title="I make a Neh sound, as in neighbor.">
+        <p style="margin-top: -29px;">&nbsp;</p>
+        <input onclick="addText('О')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="О" title="I make an Ohh sound, as in oatmeal.">
+        <input onclick="addText('П')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="П" title="I make a Peh sound, as in pencil.">
+        <input onclick="addText('Р')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Р" title="I make a Err sound, as in rain.">
+        <input onclick="addText('С')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="С" title="I make an Ess sound, as in soup.">
+        <input onclick="addText('Т')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Т" title="I make a Teh sound, as in tiger.">
+        <input onclick="addText('У')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="У" title="I make an Ooh sound, as in food.">
+        <input onclick="addText('Ф')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Ф" title="I make a Feh sound, as in feast.">
+        <input onclick="addText('Х')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Х" title="I make a guttural Hah sound, similar to the Dutch letter G as in 'gaat'.">
+        <input onclick="addText('Ц')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Ц" title="I make a Tse sound, as in pets.">
+        <input onclick="addText('Ч')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Ч" title="I make a Che sound, as in check.">
+        <input onclick="addText('Ш')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Ш" title="I make a hard Shh sound, as in shout.">
+        <input onclick="addText('Щ')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Щ" title="I make a soft Shh sound, as in sure.">
+        <input onclick="addText('Ъ')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Ъ" title="I end sentences with a hard sound.">
+        <input onclick="addText('Ы')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Ы" title="I make a deep, guttural Ooh sound. My sound is not found in English.">
+        <input onclick="addText('Ь')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Ь" title="I end sentences with a soft sound.">
+        <p style="margin-top: -29px;">&nbsp;</p>
+        <input onclick="addText('Э')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Э" title="I make an Ehh sound, as in bed.">
+        <input onclick="addText('Ю')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Ю" title="I make a Yuu sound, as in cube.">
+        <input onclick="addText('Я')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="Я" title="I make a Yah or Jah sound, as in yacht.">
+    </div>
+
+    <div id="lowLetters">
+        <input onclick="addText('а')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; cursor: pointer;" type="button" value="а" title="I make an ahh sound, as in avocado.">
+        <input onclick="addText('б')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="б" title="I make a beh sound, as in bubble.">
+        <input onclick="addText('в')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="в" title="I make a veh sound, as in vehicle.">
+        <input onclick="addText('г')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="г" title="I make a geh sound, as in game.">
+        <input onclick="addText('д')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="д" title="I make a deh sound, as in donut.">
+        <input onclick="addText('е')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="е" title="I make a yeh sound, as in yes.">
+        <input onclick="addText('ё')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="ё" title="I make a yoh sound, as in yogurt.">
+        <input onclick="addText('ж')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="ж" title="I make a zhe sound, as in pleasure.">
+        <input onclick="addText('з')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="з" title="I make a zeh sound, as in zebra.">
+        <input onclick="addText('и')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="и" title="I make an eee sound, as in beet.">
+        <input onclick="addText('й')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="й" title="I make a yah or jah sound, as in yawn.">
+        <input onclick="addText('к')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="к" title="I make a keh sound, as in kitten.">
+        <input onclick="addText('л')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="л" title="I make a lah sound, as in ladder.">
+        <input onclick="addText('м')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="м" title="I make a meh sound, as in melon.">
+        <input onclick="addText('н')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="н" title="I make a neh sound, as in neighbor.">
+        <p style="margin-top: -29px;">&nbsp;</p>
+        <input onclick="addText('о')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="о" title="I make an ohh sound, as in oatmeal.">
+        <input onclick="addText('п')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="п" title="I make a peh sound, as in pencil.">
+        <input onclick="addText('р')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="р" title="I make a err sound, as in rain.">
+        <input onclick="addText('с')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="с" title="I make an ess sound, as in soup.">
+        <input onclick="addText('т')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="т" title="I make a teh sound, as in tiger.">
+        <input onclick="addText('у')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="у" title="I make an ooh sound, as in food.">
+        <input onclick="addText('ф')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="ф" title="I make a feh sound, as in feast.">
+        <input onclick="addText('х')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="х" title="I make a guttural hah sound, similar to the Dutch letter g as in 'gaat'.">
+        <input onclick="addText('ц')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="ц" title="I make a tse sound, as in pets.">
+        <input onclick="addText('ч')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="ч" title="I make a che sound, as in check.">
+        <input onclick="addText('ш')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="ш" title="I make a hard shh sound, as in shout.">
+        <input onclick="addText('щ')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="щ" title="I make a soft shh sound, as in sure.">
+        <input onclick="addText('ъ')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="ъ" title="I end sentences with a hard sound.">
+        <input onclick="addText('ы')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="ы" title="I make a deep, guttural ooh sound. My sound is not found in English.">
+        <input onclick="addText('ь')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="ь" title="I end sentences with a soft sound.">
+        <p style="margin-top: -29px;">&nbsp;</p>
+        <input onclick="addText('э')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="э" title="I make an ehh sound, as in bed.">
+        <input onclick="addText('ю')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="ю" title="I make a yuu sound, as in cube.">
+        <input onclick="addText('я')" style="width: 50px; height: 50px; font-size: 25px; font-family: 'Times New Roman', Times, serif; display: inline; cursor: pointer;" type="button" value="я" title="I make a yah or jah sound, as in yacht.">
+    </div>
+
+    <hr style="margin-top: 9px;">
+
+    <h2>What is the Cyrillic script?</h2>
+
+    <p>The Cyrillic script is an alphabet used for writing several languages across Eastern Europe and Northern and Central Asia. Named after the Byzantine monk Saint Cyril, who, along with his brother Methodius, created it in the 9th century, the script originally aimed to translate religious texts into the Slavic languages. Over time, it spread and adapted to suit various languages, including Russian, Ukrainian, Bulgarian, Serbian, and many others. Its distinctive characters often feature angular shapes and curves, with some letters unique to specific languages. Today, Cyrillic remains a vital element of cultural identity for millions of people and serves as a key tool for communication, education, and literature in its diverse range of linguistic contexts.</p>
+
+    <script>
+        function addText(letter) {
+            // Get the reference to the textbox
+            var textbox = document.getElementById("mainTB");
+    
+            // Get the caret position
+            var caretPos = textbox.selectionStart !== undefined ? textbox.selectionStart : textbox.value.length;
+    
+            // Get the current value of the textbox
+            var currentValue = textbox.value;
+    
+            // Insert the new text at the caret position
+            var newText = currentValue.slice(0, caretPos) + letter + currentValue.slice(caretPos);
+    
+            // Set the updated value back to the textbox
+            textbox.value = newText;
+    
+            // Move the caret position after the inserted text
+            textbox.selectionStart = caretPos + 1;
+            textbox.selectionEnd = caretPos + 1;
+    
+            // Keep the textbox selected
+            textbox.focus();
+        }
+    
+        function pasteText() {
+            // Get the reference to the textbox
+            var textbox = document.getElementById("mainTB");
+    
+            // Get the text from the clipboard
+            navigator.clipboard.readText()
+                .then(text => {
+                    // Get the caret position
+                    var caretPos = textbox.selectionStart !== undefined ? textbox.selectionStart : textbox.value.length;
+    
+                    // Get the current value of the textbox
+                    var currentValue = textbox.value;
+    
+                    // Insert the text from the clipboard at the caret position
+                    var newText = currentValue.slice(0, caretPos) + text + currentValue.slice(caretPos);
+    
+                    // Set the updated value back to the textbox
+                    textbox.value = newText;
+    
+                    // Move the caret position after the pasted text
+                    textbox.selectionStart = caretPos + text.length;
+                    textbox.selectionEnd = caretPos + text.length;
+    
+                    // Keep the textbox selected
+                    textbox.focus();
+                })
+                .catch(err => {
+                    console.error('Failed to read clipboard contents: ', err);
+                });
+        }
+    
+        function copyText() {
+            // Get the reference to the textbox
+            var textbox = document.getElementById("mainTB");
+    
+            // Get the selected text
+            var selectedText = textbox.value.substring(textbox.selectionStart, textbox.selectionEnd);
+    
+            // Copy the selected text to the clipboard
+            navigator.clipboard.writeText(selectedText)
+                .then(() => {
+                    console.log('Text copied to clipboard:', selectedText);
+                })
+                .catch(err => {
+                    console.error('Failed to copy text to clipboard: ', err);
+                });
+        }
+
+        function cutText() {
+        // Get the reference to the textbox
+        var textbox = document.getElementById("mainTB");
+
+        // Get the selected text
+        var selectedText = textbox.value.substring(textbox.selectionStart, textbox.selectionEnd);
+
+        // Remove the selected text from the textbox
+        var currentValue = textbox.value;
+        var newText = currentValue.slice(0, textbox.selectionStart) + currentValue.slice(textbox.selectionEnd);
+
+        // Set the updated value back to the textbox
+        textbox.value = newText;
+
+        // Copy the selected text to the clipboard
+        navigator.clipboard.writeText(selectedText)
+            .then(() => {
+                console.log('Text cut to clipboard:', selectedText);
+            })
+            .catch(err => {
+                console.error('Failed to cut text to clipboard: ', err);
+            });
+
+        // Keep the textbox selected
+        textbox.focus();
+    }
+
+    </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const mainTB = document.getElementById('mainTB');
+    
+      mainTB.addEventListener('input', function(event) {
+        const currentValue = mainTB.value;
+        const replacedValue = currentValue
+          // Cyrillic to Latin
+          .replace(/а/g, 'a').replace(/А/g, 'A')
+          .replace(/б/g, 'b').replace(/Б/g, 'B')
+          .replace(/в/g, 'v').replace(/В/g, 'V')
+          .replace(/г/g, 'g').replace(/Г/g, 'G')
+          .replace(/д/g, 'd').replace(/Д/g, 'D')
+          .replace(/е/g, 'e').replace(/Е/g, 'E')
+          .replace(/ё/g, 'yо').replace(/Ё/g, 'Yо')
+          .replace(/ж/g, 'zh').replace(/Ж/g, 'Zh')
+          .replace(/з/g, 'z').replace(/З/g, 'Z')
+          .replace(/и/g, 'i').replace(/И/g, 'I')
+          .replace(/й/g, 'y').replace(/Й/g, 'Y')
+          .replace(/к/g, 'k').replace(/К/g, 'K')
+          .replace(/л/g, 'l').replace(/Л/g, 'L')
+          .replace(/м/g, 'm').replace(/М/g, 'M')
+          .replace(/н/g, 'n').replace(/Н/g, 'N')
+          .replace(/о/g, 'o').replace(/О/g, 'O')
+          .replace(/п/g, 'p').replace(/П/g, 'P')
+          .replace(/р/g, 'r').replace(/Р/g, 'R')
+          .replace(/с/g, 's').replace(/С/g, 'S')
+          .replace(/т/g, 't').replace(/Т/g, 'T')
+          .replace(/у/g, 'u').replace(/У/g, 'U')
+          .replace(/ф/g, 'f').replace(/Ф/g, 'F')
+          .replace(/х/g, 'h').replace(/Х/g, 'H')
+          .replace(/ц/g, 'тс').replace(/Ц/g, 'Тс')
+          .replace(/ч/g, 'cх').replace(/Ч/g, 'Cх')
+          .replace(/ш/g, 'сх').replace(/Ш/g, 'Сх')
+          .replace(/щ/g, 'шч').replace(/Щ/g, 'Шч')
+          .replace(/ъ/g, '').replace(/Ъ/g, '')
+          .replace(/ы/g, 'y').replace(/Ы/g, 'Y')
+          .replace(/ь/g, '').replace(/Ь/g, '')
+          .replace(/э/g, 'e').replace(/Э/g, 'E')
+          .replace(/ю/g, 'йу').replace(/Ю/g, 'Йу')
+          .replace(/я/g, 'йа').replace(/Я/g, 'Йа')
+          // Latin to Cyrillic
+          .replace(/a/g, 'а').replace(/A/g, 'А')
+          .replace(/b/g, 'б').replace(/B/g, 'Б')
+          .replace(/v/g, 'в').replace(/V/g, 'В')
+          .replace(/g/g, 'г').replace(/G/g, 'Г')
+          .replace(/d/g, 'д').replace(/D/g, 'Д')
+          .replace(/e/g, 'е').replace(/E/g, 'Е')
+          .replace(/yо/g, 'ё').replace(/Yо/g, 'Ё')
+          .replace(/zh/g, 'ж').replace(/Zh/g, 'Ж')
+          .replace(/z/g, 'з').replace(/Z/g, 'З')
+          .replace(/i/g, 'и').replace(/I/g, 'И')
+          .replace(/y/g, 'й').replace(/Y/g, 'Й')
+          .replace(/k/g, 'к').replace(/K/g, 'К')
+          .replace(/l/g, 'л').replace(/L/g, 'Л')
+          .replace(/m/g, 'м').replace(/M/g, 'М')
+          .replace(/n/g, 'н').replace(/N/g, 'Н')
+          .replace(/o/g, 'о').replace(/O/g, 'О')
+          .replace(/p/g, 'п').replace(/P/g, 'П')
+          .replace(/r/g, 'р').replace(/R/g, 'Р')
+          .replace(/s/g, 'с').replace(/S/g, 'С')
+          .replace(/t/g, 'т').replace(/T/g, 'Т')
+          .replace(/u/g, 'у').replace(/U/g, 'У')
+          .replace(/f/g, 'ф').replace(/F/g, 'Ф')
+          .replace(/h/g, 'х').replace(/H/g, 'Х')
+          .replace(/тс/g, 'ц').replace(/Тс/g, 'Ц')
+          .replace(/cх/g, 'ч').replace(/Cх/g, 'Ч')
+          .replace(/сх/g, 'ш').replace(/Сх/g, 'Ш')
+          .replace(/шч/g, 'щ').replace(/Шч/g, 'Щ')
+          .replace(/y/g, 'ы').replace(/Y/g, 'Ы')
+          .replace(/e/g, 'э').replace(/E/g, 'Э')
+          .replace(/йу/g, 'ю').replace(/Йу/g, 'Ю')
+          .replace(/йа/g, 'я').replace(/Йа/g, 'Я');
+        mainTB.value = replacedValue;
+      });
+    });
+    </script>
+
+</body>
+</html>
